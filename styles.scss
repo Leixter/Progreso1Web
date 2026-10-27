@@ -1,0 +1,587 @@
+// ---------- Variables ----------
+$black: #000;
+$grey-bg: #edeef0;
+$line: #c9cbcf;
+$yellow: #ffb81c;
+$topbar: #557a91;
+$radius: 14px;
+$gutter: 34px;
+$inset: 108px;
+$font-body: 'Inter', Arial, sans-serif;
+$font-display: 'Archivo', 'Arial Black', sans-serif;
+$bp-tablet: 768px;
+$bp-desktop: 1200px;
+$bp-mobile-max: 767px;
+$bp-tablet-max: 1199px;
+$card-bg: #fff;
+$card-radius: 4px;
+
+// ---------- Mixin ----------
+@mixin mobile {
+  @media (max-width: $bp-mobile-max) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $bp-tablet) and (max-width: $bp-tablet-max) {
+    @content;
+  }
+}
+
+// ---------- Base ----------
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 16px;
+  color: $black;
+  background: #fff;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+// ---------- btn ----------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 4px;
+  border: 2px solid $black;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: nowrap;
+
+  &--dark {
+    background: $black;
+    color: #fff;
+  }
+
+  &--outline {
+    background: transparent;
+    color: $black;
+  }
+
+  &--yellow {
+    background: $yellow;
+    border-color: $yellow;
+    font-weight: 700;
+  }
+
+  &--large {
+    padding: 15px 20px;
+    font-weight: 700;
+  }
+}
+
+// ---------- topbar ----------
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 41px;
+  padding: 0 $gutter;
+  background: $topbar;
+  color: #fff;
+
+  &__brand {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 22px;
+  }
+
+  &__lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+}
+
+// ---------- header ----------
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px $gutter;
+
+  &__logo {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+// ---------- nav ----------
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @include tablet {
+    gap: 20px;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  &__link {
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  &__search {
+    display: flex;
+  }
+}
+
+// ---------- hero ----------
+.hero {
+  background: $black;
+  color: #fff;
+  border-radius: $radius;
+  margin: 0 $gutter;
+  padding: 80px $inset 72px;
+  min-height: 264px;
+
+  @include mobile {
+    padding: 48px 24px;
+    min-height: 0;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: clamp(36px, 5.5vw, 66px);
+    line-height: 1.1;
+    margin-bottom: 26px;
+  }
+
+  &__text {
+    font-size: 18px;
+  }
+}
+
+// ---------- results ----------
+.results {
+  background: $grey-bg;
+  border-radius: $radius;
+  margin: 32px $gutter 0;
+  padding: 72px $inset 64px;
+
+  @include tablet {
+    padding: 48px 48px 40px;
+  }
+
+  @include mobile {
+    padding: 32px 24px;
+  }
+}
+
+// ---------- summary ----------
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+  padding: 28px 0;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 8px 90px;
+    font-size: 18px;
+
+    @include mobile {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__term {
+    font-weight: 700;
+  }
+}
+
+// ---------- cards ----------
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ---------- card ----------
+.card {
+  background: $card-bg;
+  border-radius: $card-radius;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  overflow: hidden;
+
+  &__media {
+    border-bottom: 1px solid $line;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 485 / 388;
+    object-fit: contain;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 32px 32px 40px;
+
+    @include mobile {
+      padding: 24px 20px 28px;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.1;
+    min-height: 56px;
+    margin-bottom: 18px;
+  }
+
+  &__specs {
+    display: grid;
+    gap: 4px;
+    font-size: 18px;
+    margin-bottom: 36px;
+  }
+
+  &__label {
+    font-weight: 700;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  &--horizontal {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 32px;
+    padding: 24px;
+    border: 2px solid $black;
+
+    @include mobile {
+      flex-direction: column;
+      padding: 16px;
+      gap: 20px;
+    }
+
+    .card__media {
+      flex: 0 0 40%;
+      border: 2px solid $black;
+      border-radius: 32px;
+      overflow: hidden;
+
+      @include mobile {
+        flex: none;
+      }
+    }
+
+    .card__body {
+      justify-content: space-evenly;
+      padding: 0;
+    }
+
+    .card__title {
+      min-height: 0;
+      margin-bottom: 0;
+      font-size: 28px;
+    }
+
+    .card__specs {
+      gap: 0;
+      margin-bottom: 0;
+      font-size: 20px;
+    }
+  }
+}
+
+// ---------- cta ----------
+.cta {
+  background: $black;
+  color: #fff;
+  text-align: center;
+  border-radius: $radius;
+  margin: 32px $gutter 0;
+  padding: 76px 24px 70px;
+
+  @include mobile {
+    padding: 48px 24px;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 36px;
+  }
+}
+
+// ---------- resources ----------
+.resources {
+  background: $grey-bg;
+  border-radius: $radius;
+  margin: 32px $gutter 0;
+  padding: 72px $inset 90px;
+
+  @include tablet {
+    padding: 48px;
+  }
+
+  @include mobile {
+    padding: 40px 24px;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 44px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+// ---------- post ----------
+.post {
+  &__image {
+    width: 100%;
+    aspect-ratio: 485 / 272;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  &__topic {
+    display: block;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+
+  &__text {
+    font-size: 17px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  &__icon {
+    flex: none;
+  }
+}
+
+// ---------- footer ----------
+.footer {
+  margin-top: 40px;
+  background: $grey-bg;
+  border-top: 4px solid $yellow;
+
+  &__main {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 52px $gutter 50px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  &__logo {
+    width: 66px;
+    margin-bottom: 40px;
+  }
+
+  &__text {
+    max-width: 310px;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 26px;
+  }
+
+  &__list {
+    display: grid;
+    gap: 22px;
+    margin-top: 4px;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-size: 17px;
+
+    &--underline {
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+
+  &__address {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    flex: none;
+    margin-top: 5px;
+  }
+
+  &__address-text {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+// ---------- legal ----------
+.legal {
+  border-top: 1px solid $line;
+  padding: 40px $gutter 12px;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 30px;
+  }
+}
+
+// ---------- social ----------
+.social {
+  display: flex;
+  gap: 20px;
+
+  &__link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+  }
+}
